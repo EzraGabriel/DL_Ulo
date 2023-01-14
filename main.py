@@ -17,6 +17,7 @@ num_ftrs = model_ft.classifier[0].out_features
 model_ft.fc = nn.Linear(num_ftrs, 2)
 
 model_ft.load_state_dict(torch.load('model.pth'))
+model_ft = model_ft.to('cuda')
 
 # image transfromer
 converter = transforms.Compose([
@@ -51,7 +52,7 @@ if file is not None:
     image = Image.open(file)
 
     tensor_img = converter(image)
-    tensor_img = tensor_img.unsqueeze(0)
+    tensor_img = tensor_img.unsqueeze(0).to('cuda')
 
     # predictions
     model_ft.eval()
