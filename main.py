@@ -17,7 +17,6 @@ num_ftrs = model_ft.classifier[0].out_features
 model_ft.fc = nn.Linear(num_ftrs, 2)
 
 model_ft.load_state_dict(torch.load('model.pth'))
-model_ft = model_ft
 
 # image transfromer
 converter = transforms.Compose([
